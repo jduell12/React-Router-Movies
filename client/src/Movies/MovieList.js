@@ -3,22 +3,26 @@ import {Link, useRouteMatch, useParams} from 'react-router-dom'
 import MovieCard from './MovieCard'
 
 const MovieList = props => {
+
+  const {addToSavedList} = props.addToSavedList;
+
   return (
     <div className="movie-list">
       {props.movies.map(movie => (
-        <MovieDetails key={movie.id} movie={movie} />
+        console.log(props.movies),
+        <MovieDetails key={movie.id} movie={movie} addToSavedList={props.addToSavedList}/>
       ))}
     </div>
   );
 }
 
-function MovieDetails({ movie }) {
-  const { title, director, metascore, stars } = movie;
-  const {url} = useRouteMatch();
+function MovieDetails(props) {
+  const movie = props.movie;
+  const {addToSavedList} = props.addToSavedList;
   
   return (
     <Link to={`/movies/${movie.id}`}>
-        <MovieCard movie={movie}></MovieCard>
+        <MovieCard movie={movie} addToSavedList = {addToSavedList}></MovieCard>
     </Link>
     
   );

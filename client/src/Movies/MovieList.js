@@ -9,7 +9,6 @@ const MovieList = props => {
   return (
     <div className="movie-list">
       {props.movies.map(movie => (
-        console.log(props.movies),
         <MovieDetails key={movie.id} movie={movie} addToSavedList={props.addToSavedList}/>
       ))}
     </div>

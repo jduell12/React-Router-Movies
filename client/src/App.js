@@ -4,6 +4,7 @@ import {Switch, Route} from 'react-router-dom'
 
 import SavedList from './Movies/SavedList';
 import MovieList from './Movies/MovieList';
+import Movie from './Movies/Movie'
 
 const App = () => {
   const [savedList, setSavedList] = useState([]);
@@ -15,7 +16,6 @@ const App = () => {
         .get('http://localhost:5000/api/movies')
         .then(response => {
           setMovieList(response.data);
-          console.log(movieList);
           
         })
         .catch(error => {
@@ -34,12 +34,12 @@ const App = () => {
     <div>
       <SavedList list={savedList} />
       <Switch>
-        <Route path="/">
-            <MovieList movies={movieList}/>
+        <Route path="/movies/:id">
+            <Movie/>
         </Route>
 
-        <Route path="/movies/:id">
-
+        <Route path="/">
+            <MovieList movies={movieList}/>
         </Route>
       </Switch>
     </div>
